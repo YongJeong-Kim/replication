@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  master:
+    image: mysql
+    container_name: mysql-master
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=1234
+    # volumes:
+    #   - ./master/my.cnf:/etc/my.cnf:ro
+
+  slave:
+    image: mysql 
+    container_name: mysql-slave
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=1234
+    # volumes:
+    #   - ./slave/my.cnf:/etc/my.cnf:ro
+    depends_on:
+      - master
