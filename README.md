@@ -35,9 +35,9 @@ master는 1, slave는 2가 조회되어야 한다.
 ```bash
 $ docker compose exec master bash
 $ mysql -u root -p
-mysql> create user 'testsuser'@'%' identified by '1234';
+mysql> create user 'testuser'@'%' identified by '1234';
 mysql> alter user 'testuser'@'%' identified with mysql_native_password by '1234';
-mysql> grant replication slave on *.* on 'testuser'@'%';
+mysql> grant replication slave on *.* to 'testuser'@'%';
 mysql> flush privileges;
 ```
 
